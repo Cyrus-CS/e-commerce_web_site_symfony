@@ -12,18 +12,29 @@ security:
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+            security: true
         main:
             lazy: true
             provider: app_user_provider
+            #remember_me:
+                #secret: '%kernel.secret%'
+                #lifetime: 6800 # 1 week in seconds
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true
             form_login:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
+                #csrf_token_id: authenticate
+               # csrf_parameter: _csrf_token
+                # https://symfony.com/doc/current/security/form_login_setup.html#form-login-setup
             logout:
                 path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
+                # where to redirect after logout if the user is not logged in
+                target: app_home
+                
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -34,8 +45,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_EDITOR }
 
 when@test:
     security:

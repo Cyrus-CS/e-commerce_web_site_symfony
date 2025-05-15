@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ title   ~  description }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+    {% for message in app.flashes('success', 'error', 'danger', 'info') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+        <div class="form">
+            <h2>Modifier la catégorie de l'identifiant : {{id}}</h2>
+                {{ form_start(form) }}
+                    {{ form_row(form.name, {'attr' : {'class' : 'form form-control'}}) }}
+
+                    <div class='mt-4 d-flex justify-content-center'>
+                        <button type="submit" class="btn btn-success w-100">Mettre à jour </button>
+                    </div>
+                {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

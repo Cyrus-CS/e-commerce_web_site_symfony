@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sous-catégorie{% endblock %}
+
+{% block body %}
+    <div class="container mb-4">
+        <h1 class="text-center">Toutes vos sous-catégories</h1>
+        <div class="table-responsive">
+            <table class="table table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>#NOM DESSOUS-CATEGORIE</th>
+                        <th>#CATEGORIES</th>
+                        <th>#ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for sous_categorie in sous_categories %}
+                    <tr>
+                        <td>{{ sous_categorie.id }}</td>
+                        <td>{{ sous_categorie.name }}</td>
+                            <td>{{ sous_categorie.category.name }}</td>
+                        <td>
+                            <a class="btn btn-success sm" href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}">Afficher </a>
+                            <a class="btn btn-warning sm" href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Aucune sous-catégorie trouvée !</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a class="btn btn-primary sm" href="{{ path('app_sous_categorie_new') }}">Créez une sous-catégorie</a>
+    </div>
+{% endblock %}

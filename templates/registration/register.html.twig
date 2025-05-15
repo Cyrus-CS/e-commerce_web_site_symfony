@@ -1,19 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="width: 500px;">
+        <h2 class="text-center mb-4">Inscription</h2>
 
-    {{ form_errors(registrationForm) }}
+        {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_start(registrationForm) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        <div class="row mb-3">
+            <div class="col-md-6">
+                {{ form_row(registrationForm.name, { 'attr': {'class': 'form-control', 'placeholder': 'Votre nom'} }) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(registrationForm.firstName, { 'attr': {'class': 'form-control', 'placeholder': 'Votre prénom'} }) }}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(registrationForm.email, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(registrationForm.plainPassword, { 'attr': {'class': 'form-control'}, 'label': 'Mot de passe' }) }}
+        </div>
+
+        <div class="mb-3 form-check">
+            {{ form_row(registrationForm.agreeTerms, { 'attr': {'class': 'form-check-input'} }) }}
+        </div>
+        <button type="submit" class="btn btn-success w-100">S'inscrire</button>
+
+        {{ form_end(registrationForm) }}
+    </div>
+</div>
 {% endblock %}

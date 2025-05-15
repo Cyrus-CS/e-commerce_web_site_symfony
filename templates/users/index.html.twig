@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title is defined ? title : '' }} {{ description is defined ? description : '' }}{% endblock %}
+
+{% block body %}
+    <div class='container'>
+    {% for message in app.flashes('sucess') %}
+        {{message}}
+    {% endfor %}
+        <div class='table-responsive'>
+            <table class='table table-striped table-hover'>
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#ID</th>
+                        <th>#EMAIL</th>
+                        <th>#NOM</th>
+                        <th>#PRENOM</th>
+                        <th>#ROLE</th>
+                        <th>#ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.firstName }}</td>
+                            <td>
+                                {% for role in user.roles %}
+                                    {{ user.roles | join(', ') }}
+                                {% endfor %}
+                            </td>
+                            <td>
+                               {% if 'ROLE_ADMIN' not in user.roles %}
+                                    {% if 'ROLE_EDITOR' not in user.roles %}
+                                        <a onclick="return confirm('Voulez-vous ajouter un éditeur ?')" class="btn btn-sm btn-outline-primary" href="{{ path('admin.edit.user', {id: user.id}) }}">Ajouter un éditeur</a>
+                                    {% else %}
+                                        <a onclick="return confirm('Voulez-vous retirer un éditeur ?')" class="btn btn-sm btn-outline-primary" href="{{ path('admin.delete.user', {id: user.id}) }}">Supprimer l'editeur </a>
+                                    {% endif %}
+                                {% endif %}
+                                <a class="btn btn-sm btn-outline-danger" href="{{ path('admin.delete.user', {id: user.id}) }}">Supprimer</a>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

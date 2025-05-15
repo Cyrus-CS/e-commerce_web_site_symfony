@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle sous-catégorie{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2 class="text-center">Créez une nouvelle sous-catégorie</h2>
+
+        {{ include('sous_categorie/_form.html.twig') }}
+
+        <a href="{{ path('app_sous_categorie_index') }}">Revenir à la liste des sous-catégories </a>
+    </div>
+{% endblock %}

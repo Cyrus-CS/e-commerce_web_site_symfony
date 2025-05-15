@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+        {# Logo à gauche #}
+        <a class="navbar-brand" href="{{ path('app_home') }}">MaBoutique</a>
+
+        {# Bouton mobile #}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarMain">
+            {# Liens au milieu #}
+            <ul class="navbar-nav mb-2 mb-lg-0">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catégories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        {#{% for category in categories %} 
+                            <li>
+                                <a class="dropdown-item" href="{{ path('category.read', {name: category.name}) }}">
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li><span class="dropdown-item text-muted">Aucune catégorie</span></li>
+                        {% endfor %}#}
+                        je suis un test
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Témoignages</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+        {# À droite : icônes panier et utilisateur #}
+        <div class="d-flex align-items-center">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+
+                <li class="nav-item me-2">
+                    <a class="nav-link position-relative" href="#">
+                        <i class="bi bi-cart3 fs-5"></i>
+                        {#{% if cartItemCount > 0 %} 
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{ cartItemCount }}
+                            </span>
+                        {% endif %}#}
+                        je suis un card
+                    </a>
+                </li>
+
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle fs-5"></i> {{ app.user.userIdentifier }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                            <li><a class="dropdown-item" href="#">Mon profil</a></li>
+                            <li><a class="dropdown-item" href="#}">Mes commandes</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">
+                            <i class="bi bi-box-arrow-in-right fs-5"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-outline-primary" href="{{ path('app_register') }}">Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</nav>
