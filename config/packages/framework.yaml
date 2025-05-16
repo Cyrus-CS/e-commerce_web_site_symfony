@@ -1,17 +1,27 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
+    session: true
+
+    csrf_protection:
+        enabled: true
+        stateless_token_ids:
+            - authenticate
+
+#framework:
+    #secret: '%env(APP_SECRET)%'
 
     # Note that the session will be started ONLY if you read or write from it.
-    session: true
+   # session: true
 
     #esi: true
     #fragments: true
 
-when@test:
-    framework:
-    csrf_protection: true
-    test: true
-    session:
-        handler_id: null
-        storage_factory_id: session.storage.factory.mock_file
+#when@test:
+#    framework:
+#    csrf_protection: 
+#        enabled: true
+#    test: true
+#    session:
+#        handler_id: null
+#        storage_factory_id: session.storage.factory.mock_file

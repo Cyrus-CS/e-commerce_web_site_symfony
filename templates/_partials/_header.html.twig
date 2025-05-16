@@ -3,6 +3,7 @@
 
         {# Logo à gauche #}
         <a class="navbar-brand" href="{{ path('app_home') }}">MaBoutique</a>
+        {# <img src="assets/img/logo.png"> #}
 
         {# Bouton mobile #}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,16 +19,19 @@
                         Catégories
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                        {#{% for category in categories %} 
+                        {% for category in categories %} 
                             <li>
+                                {# Affichage de la catégorie avec un lien vers sa page #}
+                                {# On utilise le nom de la catégorie comme identifiant unique dans l'URL #}
+                                {# On suppose que le nom de la catégorie est unique #}
                                 <a class="dropdown-item" href="{{ path('category.read', {name: category.name}) }}">
                                     {{ category.name }}
                                 </a>
                             </li>
+                            {# S'il n'y a pas de catégorie #}
                         {% else %}
                             <li><span class="dropdown-item text-muted">Aucune catégorie</span></li>
-                        {% endfor %}#}
-                        je suis un test
+                        {% endfor %}
                     </ul>
                 </li>
 
@@ -57,7 +61,6 @@
                                 {{ cartItemCount }}
                             </span>
                         {% endif %}#}
-                        je suis un card
                     </a>
                 </li>
 

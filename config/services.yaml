@@ -4,8 +4,15 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    # This is the default directory where the images are stored
+    image_directory: '%kernel.project_dir%/public/uploads/images'
 services:
+    app.twig_global_listener:
+        class: App\EventListener\TwigGlobalListener
+        arguments: ['@twig', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.controller', method: 'onKernelController' }
+            
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

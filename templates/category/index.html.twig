@@ -9,7 +9,7 @@
     {# Bouton de création de catégorie placé en évidence #}
     <div class="text-center mb-3">
         <p class="lead">Ajoutez une nouvelle catégorie pour enrichir votre liste.</p>
-        <a href="{{ path('admin.category.create') }}" class="btn btn-success btn-sm">Créer une catégorie</a>
+        <a href="{{ path('category.create') }}" class="btn btn-success btn-sm">Créer une catégorie</a>
     </div>
 
     {% if categories|length > 0 %}
@@ -28,8 +28,8 @@
                             <td>{{ cat.id }}</td>
                             <td>{{ cat.name }}</td>
                             <td>
-                                <a class="btn btn-sm btn-outline-primary" href="{{ path('admin.category.update', { id: cat.id }) }}">Modifier</a>
-                                <a class="btn btn-sm btn-outline-danger" href="{{ path('admin.category.delete', { id: cat.id }) }}">Supprimer</a>
+                                <a class="btn btn-sm btn-outline-primary" href="{{ path('category.update', { id: cat.id }) }}">Modifier</a>
+                                <a class="btn btn-sm btn-outline-danger" href="{{ path('category.delete', { id: cat.id }) }}">Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}

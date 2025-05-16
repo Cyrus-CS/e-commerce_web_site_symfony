@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+<div class="container mb-4">
+    <h1 class="text-center">Liste de vos Produits enregistrés</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for produit in produits %}
+                <tr>
+                    <td>{{ produit.id }}</td>
+                    <td>{{ produit.name }}</td>
+                    <td>{{ produit.description }}</td>
+                    <td>{{ produit.price }}</td>
+                    <td>
+                        <a class="btn btn-success sm" href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>
+                        <a class="btn btn-warning sm" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun produit trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            <a class="btn btn-primary" href="{{ path('app_produit_new') }}">Créez un nouveau produit</a>
+    </div>
+</div>
+{% endblock %}

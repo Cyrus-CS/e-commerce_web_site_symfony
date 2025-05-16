@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {#{{ form_row(form.images, {'attr': {'class' : 'form form-control'}}) }} #}
+    <button class="btn btn-outline-primary sm">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

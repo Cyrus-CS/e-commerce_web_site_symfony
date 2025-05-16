@@ -16,9 +16,9 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            #remember_me:
-                #secret: '%kernel.secret%'
-                #lifetime: 6800 # 1 week in seconds
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 623800 # 1 week in seconds
                 # by default, the feature is enabled by checking a
                 # checkbox in the login form (see below), uncomment the
                 # following line to always enable it.
@@ -28,7 +28,8 @@ security:
                 check_path: app_login
                 enable_csrf: true
                 #csrf_token_id: authenticate
-               # csrf_parameter: _csrf_token
+                csrf_parameter: _csrf_token
+                username_parameter: email
                 # https://symfony.com/doc/current/security/form_login_setup.html#form-login-setup
             logout:
                 path: app_logout

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin', name: 'admin.')]
+//#[Route('/admin', name: 'admin.')]
 final class CategoryController extends AbstractController
 {
 
@@ -26,7 +26,7 @@ final class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
             $this->addFlash('success', 'La catégorie a été ajoutée avec succès.');
-            return $this->redirectToRoute('admin.category.read');
+            return $this->redirectToRoute('category.read');
         }
         return $this->render('category/create.html.twig',[
             'title' =>'Categories : ',
@@ -66,7 +66,7 @@ final class CategoryController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'La catégorie a été modifiée avec succès.');
             // Redirection vers la liste des catégories
-            return $this->redirectToRoute('admin.category.read');
+            return $this->redirectToRoute('.category.read');
         }
 
         return $this->render('category/update.html.twig',[
@@ -83,6 +83,6 @@ final class CategoryController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'La catégorie a été supprimée avec succès.');
         // Redirection vers la liste des catégories
-        return $this->redirectToRoute('admin.category.read');
+        return $this->redirectToRoute('category.read');
     }
 }
