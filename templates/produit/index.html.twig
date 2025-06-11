@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index{% endblock %}
+{% block title %}Liste de produit{% endblock %}
 
 {% block body %}
 <div class="container mb-4">
-    <h1 class="text-center">Liste de vos Produits enregistrés</h1>
-    <div class="table-responsive">
+    <h1 class="text-center mb-3">Liste de vos Produits enregistrés</h1>
+    <div class="table-responsive p-4">
         <table class="table">
             <thead>
                 <tr>
@@ -13,6 +13,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Stock</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -23,9 +24,17 @@
                     <td>{{ produit.name }}</td>
                     <td>{{ produit.description }}</td>
                     <td>{{ produit.price }}</td>
+                    <td> 
+                        {% if produit.stock %}
+                            {{ produit.stock }}
+                        {% else %}
+                            <span class="text-danger">stock épuisé </span>
+                        {% endif %}
+                    </td>
                     <td>
                         <a class="btn btn-success sm" href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>
                         <a class="btn btn-warning sm" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+                        <a class="btn btn-primary sm" href="{{ path('add_product_stock', {'id' : produit.id }) }}">Ajouter le stock</a>
                     </td>
                 </tr>
             {% else %}

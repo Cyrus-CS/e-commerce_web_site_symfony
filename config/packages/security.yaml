@@ -9,6 +9,7 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -27,14 +28,16 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
-                #csrf_token_id: authenticate
+                csrf_token_id: authenticate
                 csrf_parameter: _csrf_token
-                username_parameter: email
+                #username_parameter: _username
                 # https://symfony.com/doc/current/security/form_login_setup.html#form-login-setup
             logout:
                 path: app_logout
-                # where to redirect after logout if the user is not logged in
-                target: app_home
+                # where to redirect after logout
+                # target: app_any_route
+                # where to redirect after logout
+                # target: app_any_route
                 
 
             # activate different ways to authenticate

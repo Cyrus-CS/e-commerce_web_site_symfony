@@ -26,8 +26,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_index') }}">back to list</a>
-
+    <a class="btn btn-outline-success" href="{{ path('app_produit_index') }}">Retour au Dashboard</a>
+    <a class="btn btn-primary" href="{{ path('app_product_stock_add_history', {id: produit.id}) }}">Afficher l'historique</a>
     <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
 
     {{ include('produit/_delete_form.html.twig') }}

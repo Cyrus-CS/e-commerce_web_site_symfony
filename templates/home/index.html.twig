@@ -3,5 +3,23 @@
 {% block title %}{{ title ~  description }}{% endblock %}
 
 {% block body %}
-
+    <div class="container p-2">
+        <h1 class='text-center text-uppercase mb-4'>Découvrez nos produits</h1>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <div class='card' style="width: 18rem">
+                        <!-- On cible le dossier où se trouve les images -->
+                        <img src="{{ asset('uploads/images/' ~ product.images) }}" class='card-img-top img-fluid' alt='images produits'>
+                        <div class="card-body">
+                            <h5 class='card-title'>{{ product.name}}</h5>
+                            <!--{{ product.description | slice(0, 25) }}...-->
+                            <p class='card-text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam nostrum soluta molestias nisi hic corrupti aliquam earum iusto! At perspiciatis enim alias </p>
+                            <a class='btn btn-outline-primary sm' href='{{ path('product.show', {id : product.id}) }}'>AJOUTER AU PANNIER</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

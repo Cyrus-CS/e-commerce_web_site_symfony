@@ -6,13 +6,14 @@ use App\Entity\Produit;
 use App\Entity\SousCategorie;
 use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProduitForm extends AbstractType
@@ -31,6 +32,13 @@ class ProduitForm extends AbstractType
                 'attr' => [
                     'rows' => 5,
                     'placeholder' => 'Description du produit',
+                ],
+            ])
+            ->add('stock', IntegerType::class, [
+                'label' => 'Stock',
+                'attr' => [
+                    'placeholder' => 'Stock du produit',
+                    'class' => 'form-control',
                 ],
             ])
             ->add('price', MoneyType::class, [

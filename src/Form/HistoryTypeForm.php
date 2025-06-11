@@ -2,27 +2,32 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
+use DateTimeImmutable;
+use App\Entity\History;
+use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategoryFormType extends AbstractType
+class HistoryTypeForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label'=> 'Nom de la catégorie à ajouter ',
-            ])
+            ->add('qte')
+           /*->add('createdAt')
+            ->add('produit', EntityType::class, [
+                'class' => Produit::class,
+                'choice_label' => 'name',
+            ])*/
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Categorie::class,
+            'data_class' => History::class,
         ]);
     }
 }

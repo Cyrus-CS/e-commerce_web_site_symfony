@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ title }}{% endblock title%}
+
+{% block body %}
+    <div class="container mt-4">
+        {#{% for message in app.flashes('')%}#}
+        <h2>Ajouter un stock pour : {{ product.name}}</h2>
+            {{ form_start(form) }}
+            {{ form_row(form.qte, {'attr' : {'class' : 'form form-control '}}) }}
+            <button type="submit" class="btn btn-primary btn-block" > Ajouter le stock </button>
+            {{ form_end(form) }}
+    </div>
+{% endblock %}

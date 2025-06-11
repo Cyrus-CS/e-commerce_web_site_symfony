@@ -31,6 +31,8 @@
         <div class="mb-3 form-check">
             {{ form_row(registrationForm.agreeTerms, { 'attr': {'class': 'form-check-input'} }) }}
         </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('registration_form') }}">
+
         <button type="submit" class="btn btn-success w-100">S'inscrire</button>
 
         {{ form_end(registrationForm) }}

@@ -9,25 +9,26 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route('/login', name: 'app_login', methods: ['GET', 'POST'])]
+    #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // Récupération de l'erreur de connexion s'il y en a une
+        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // Dernier email saisi
+        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
+            'title' => 'Connectez-vous',
+            'description' => 'Une connexion rapide avec un maximum de sécurité '
         ]);
     }
 
-    #[Route('/logout', name: 'app_logout')]
+    #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-        throw new \LogicException('This method is intercepted by the firewall for logout.');
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
-// src/Controller/SecurityController.php

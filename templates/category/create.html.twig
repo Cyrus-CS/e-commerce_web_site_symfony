@@ -5,13 +5,12 @@
     <div class="container">
         <div class="form">
             <h2>Ajouter une catégorie</h2>
-                {{ form_start(form) }}
-                    {{ form_row(form.name, {'attr' : {'class' : 'form form-control'}}) }}
-
-                    <div class='mt-4 d-flex justify-content-center'>
-                        <button type="submit" class="btn btn-success w-100">Sauvegarder</button>
-                    </div>
-                {{ form_end(form) }}
+            {{ form_start(form) }}
+                {{ form_row(form.name, {'attr' : {'class' : 'form form-control'}}) }}
+                <div class='mt-4 d-flex justify-content-center'>
+                    <button type="submit" class="btn btn-success w-100">Enregistrer la catégorie</button>
+                </div>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}
